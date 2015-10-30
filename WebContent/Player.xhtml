@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:form>
+	Player ID: <h:inputText value="#{playerManagedBean.player.id}" /><br/>
+	User Name: <h:inputText value="#{playerManagedBean.player.username}" /><br/>
+	Display Name: <h:inputText value="#{playerManagedBean.player.displayName}" /><br/>
+	<h:commandButton action="#{playerManagedBean.add()}" value="Create"/>
+	<h:commandButton action="#{playerManagedBean.find()}" value="Find"/>
+	<h:commandButton action="#{playerManagedBean.update}" value="Update"/>
+	<h:commandButton action="#{playerManagedBean.list}" value="List All"/>
+	<h:commandButton action="#{playerManagedBean.delete}" value="Delete"/>
+
+</h:form>
+
+</html>

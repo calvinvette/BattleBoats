@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:form>
+<h:dataTable value="#{playerManagedBean.players}" var="currentPlayer">
+	<f:facet name="header">Customer List</f:facet>
+	<h:column>
+		<f:facet name="header">Player ID</f:facet>
+		<h:commandLink action="#{playerManagedBean.find}">
+			<f:setPropertyActionListener 
+				target="#{playerManagedBean.player.id}" 
+				value="#{currentPlayer.id}" />
+			#{currentPlayer.id}
+		</h:commandLink>
+	</h:column>
+	<h:column>
+		<f:facet name="header">User Name</f:facet>
+	#{currentPlayer.username}
+</h:column>
+	<h:column>
+		<f:facet name="header">Display Name</f:facet>		
+	#{currentPlayer.displayName}
+</h:column>
+</h:dataTable>
+</h:form>
+
+<a href="Player.xhtml">Player Form</a>
+</html>

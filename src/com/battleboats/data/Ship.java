@@ -15,7 +15,7 @@ public class Ship implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id = -1;
 	
 	// TODO - add in name and designation of ship
 	
