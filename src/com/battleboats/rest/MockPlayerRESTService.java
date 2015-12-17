@@ -1,4 +1,4 @@
-package com.battleboats.data;
+package com.battleboats.rest;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-import com.battleboats.rest.IPlayerRESTService;
+import com.battleboats.data.Player;
 
 public class MockPlayerRESTService implements IPlayerRESTService {
 	
