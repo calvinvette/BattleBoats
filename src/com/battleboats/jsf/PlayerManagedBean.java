@@ -8,7 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import com.battleboats.data.Player;
-import com.battleboats.rest.PlayerRESTService;
+import com.battleboats.rest.IPlayerRESTService;
 
 @ManagedBean(name = "playerManagedBean")
 //@RequestScoped
@@ -16,7 +16,7 @@ import com.battleboats.rest.PlayerRESTService;
 public class PlayerManagedBean {
 	private Player player = new Player();
 	private List<Player> players = new ArrayList<>();
-	PlayerRESTService svc = new PlayerRESTService();
+	IPlayerRESTService svc; // = new PlayerRESTService();
 
 	public Player getPlayer() {
 		return player;

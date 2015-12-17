@@ -22,24 +22,40 @@ import com.battleboats.data.PlayerJPADAO;
 @Path("/players")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public class PlayerRESTService {
+public class PlayerRESTService implements IPlayerRESTService {
 	private PlayerJPADAO dao = new PlayerJPADAO();
 
+	/* (non-Javadoc)
+	 * @see com.battleboats.rest.IPlayerRESTService#insert(com.battleboats.data.Player)
+	 */
+	@Override
 	@POST
 	public Player insert(Player player) {
 		return dao.insert(player);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.battleboats.rest.IPlayerRESTService#update(com.battleboats.data.Player)
+	 */
+	@Override
 	@PUT
 	public Player update(Player player) {
 		return dao.update(player);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.battleboats.rest.IPlayerRESTService#delete(com.battleboats.data.Player)
+	 */
+	@Override
 	@DELETE
 	public Player delete(Player player) {
 		return dao.delete(player);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.battleboats.rest.IPlayerRESTService#findById(java.lang.Integer)
+	 */
+	@Override
 	@GET
 	@Path("{id: \\d+}")
 	// Full URL: http://localhost:8080/BattleBoats/rest/players/1234
@@ -47,6 +63,10 @@ public class PlayerRESTService {
 		return dao.findById(id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.battleboats.rest.IPlayerRESTService#findByUserName(java.lang.String)
+	 */
+	@Override
 	@GET
 	@Path("/username/{userName}")
 	// Full URL: http://localhost:8080/BattleBoats/rest/players/username/hpotter
@@ -54,6 +74,10 @@ public class PlayerRESTService {
 		return dao.findByUserName(userName);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.battleboats.rest.IPlayerRESTService#findByEmail(java.lang.String)
+	 */
+	@Override
 	@GET
 	@Path("/email/{email}")
 	// Full URL: http://localhost:8080/BattleBoats/rest/players/email/hpotter@hogwarts.ac.uk
@@ -61,6 +85,10 @@ public class PlayerRESTService {
 		return dao.findByEmail(email);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.battleboats.rest.IPlayerRESTService#findAll()
+	 */
+	@Override
 	@GET
 	// Full URL: http://localhost:8080/BattleBoats/rest/players
 	public List<Player> findAll() {
