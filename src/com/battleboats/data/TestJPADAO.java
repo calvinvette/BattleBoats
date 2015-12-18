@@ -32,38 +32,66 @@ public class TestJPADAO {
 		playerJPADAO = null;
 	}
 
+	public Player makeSnape() {
+		Player snape = new Player(-1, "ssnape");
+		snape.setDisplayName("Severus Snape");
+		snape.setAge(44);
+		snape.setEmail("severus.snape@hogwarts.ac.uk");
+		return snape;
+	}
+
 	@Test
 	public void testInsert() {
-		fail("Not yet implemented");
+		Player snape = makeSnape();
+		playerJPADAO.insert(snape);
+		assertTrue("Snape's ID is still -1!", snape.getId() > 0);
+		Player foundSnape = playerJPADAO.findById(snape.getId());
+		assertEquals("Wrong userName!", "ssnape", foundSnape.getUsername());
+		assertEquals("Wrong DisplayName!", "Severus Snape", foundSnape.getDisplayName());
 	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		Player snape = playerJPADAO.findByEmail("severus.snape@hogwarts.ac.uk").get(0);
+		if (snape == null) {
+			snape = makeSnape();
+			playerJPADAO.insert(snape);
+		}
+		snape.setRanking(993);
+		Player foundSnape = playerJPADAO.findById(snape.getId());
+		assertEquals("Ranking should have been 993", new Integer(993), foundSnape.getRanking());
 	}
 
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		Player snape = playerJPADAO.findByEmail("severus.snape@hogwarts.ac.uk").get(0);
+		if (snape == null) {
+			snape = makeSnape();
+			playerJPADAO.insert(snape);
+		}
+		Player deletedSnape = playerJPADAO.delete(snape);
+		Player foundSnape = playerJPADAO.findById(snape.getId());
+		assertNull("Should not find Snape after deleting him!", foundSnape);
 	}
 
 	@Test
 	public void testFindById() {
 		Player found = playerJPADAO.findById(1);
-		assertEquals("Display Name is NOT 'Harry Potter' it's: " + found.getDisplayName(), 
-				"Harry Potter",
+		assertEquals("Display Name is NOT 'Harry Potter' it's: " + found.getDisplayName(), "Harry Potter",
 				found.getDisplayName());
 		assertEquals("UserName is NOT hpotter!", "hpotter", found.getUsername());
 	}
 
 	@Test
 	public void testFindByUserName() {
-		fail("Not yet implemented");
+		Player harry = playerJPADAO.findByUserName("hpotter");
+		assertNotNull("Harry should have been found by userId hpotter!", harry);
 	}
 
 	@Test
 	public void testFindByEmail() {
-		fail("Not yet implemented");
+		Player harry = playerJPADAO.findByEmail("harry.potter@hogwarts.ac.uk").get(0);
+		assertNotNull("Harry should have been found by email 'harry.potter@hogwarts.ac.uk'", harry);
 	}
 
 	@Test
