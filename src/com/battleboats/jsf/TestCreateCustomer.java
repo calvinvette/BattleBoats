@@ -25,12 +25,12 @@ public class TestCreateCustomer {
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
     baseUrl = "http://localhost:8080/BattleBoats/";
-//    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
   public void testCreateCustomer() throws Exception {
-    driver.get(baseUrl + "/BattleBoats/faces/Player.xhtml");
+    driver.get(baseUrl + "faces/Player.xhtml");
     driver.findElement(By.name("j_idt2:j_idt4")).clear();
     driver.findElement(By.name("j_idt2:j_idt4")).sendKeys("7");
     driver.findElement(By.name("j_idt2:j_idt6")).clear();
@@ -66,7 +66,7 @@ public class TestCreateCustomer {
 
   private boolean isAlertPresent() {
     try {
-//      driver.switchTo().alert();
+      driver.switchTo().alert();
       return true;
     } catch (NoAlertPresentException e) {
       return false;
@@ -75,14 +75,14 @@ public class TestCreateCustomer {
 
   private String closeAlertAndGetItsText() {
     try {
-//      Alert alert = driver.switchTo().alert();
-//      String alertText = alert.getText();
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
       if (acceptNextAlert) {
-//        alert.accept();
+        alert.accept();
       } else {
-//        alert.dismiss();
+        alert.dismiss();
       }
-      return "";// alertText;
+      return alertText;
     } finally {
       acceptNextAlert = true;
     }
