@@ -1,0 +1,12 @@
+For Calvin: To (re-) create hit repo:
+
+echo "# BattleBoats" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/calvinvette/BattleBoats.git
+git push -u origin master
+
+
+git remote add origin https://github.com/calvinvette/BattleBoats.git
+git push -u origin master
