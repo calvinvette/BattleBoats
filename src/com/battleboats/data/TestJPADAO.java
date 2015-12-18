@@ -10,20 +10,26 @@ import org.junit.Test;
 
 public class TestJPADAO {
 
+	private PlayerJPADAO playerJPADAO;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		PlayerJPADAO.getEntityManagerFactory();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		PlayerJPADAO.getEntityManagerFactory().close();
 	}
 
-	@Before
+	@Before // Each Test, reset the dao
 	public void setUp() throws Exception {
+		playerJPADAO = new PlayerJPADAO();
 	}
 
-	@After
+	@After // Each test, set dao to null (pseudo-cleanup)
 	public void tearDown() throws Exception {
+		playerJPADAO = null;
 	}
 
 	@Test
@@ -43,7 +49,11 @@ public class TestJPADAO {
 
 	@Test
 	public void testFindById() {
-		fail("Not yet implemented");
+		Player found = playerJPADAO.findById(1);
+		assertEquals("Display Name is NOT 'Harry Potter' it's: " + found.getDisplayName(), 
+				"Harry Potter",
+				found.getDisplayName());
+		assertEquals("UserName is NOT hpotter!", "hpotter", found.getUsername());
 	}
 
 	@Test
@@ -58,7 +68,8 @@ public class TestJPADAO {
 
 	@Test
 	public void testFindAll() {
-		fail("Not yet implemented");
+		int numPlayers = playerJPADAO.findAll().size();
+		assertTrue("Not enough players in DB! Found " + numPlayers, numPlayers >= 3);
 	}
 
 }

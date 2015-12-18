@@ -9,3 +9,18 @@ For now, the hibernate settings are set to RESOURCE_LOCAL; not using a JTA Data 
 Also not using a hibernate setting for auto-create tables
 
 
+
+
+
+echo "# BattleBoats" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/calvinvette/BattleBoats.git
+git push -u origin master
+
+
+git remote add origin https://github.com/calvinvette/BattleBoats.git
+git push -u origin master
+
+
