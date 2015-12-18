@@ -8,19 +8,13 @@ Launch JBoss or Tomcat and deploy the war file to it.
 For now, the hibernate settings are set to RESOURCE_LOCAL; not using a JTA Data Source
 Also not using a hibernate setting for auto-create tables
 
+Verify your data is clean (esp no duplicate usernames) before running tests
+Make sure the Derby instance is started
 
 
 
 
-echo "# BattleBoats" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/calvinvette/BattleBoats.git
-git push -u origin master
 
 
-git remote add origin https://github.com/calvinvette/BattleBoats.git
-git push -u origin master
 
 
