@@ -93,6 +93,7 @@ public class PlayerJPADAO {
 		EntityTransaction tx = getEntityManager().getTransaction();
 		try {
 			tx.begin();
+			getEntityManager().merge(player); // re-attach first
 			getEntityManager().remove(player); // DELETE FROM PLAYER WHERE...
 			tx.commit();
 		} catch (Exception e) {

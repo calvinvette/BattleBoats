@@ -2,8 +2,8 @@ package com.battleboats.rest;
 
 import java.util.List;
 
-import javax.activation.MimeType;
-import javax.mail.internet.ContentType;
+import javax.enterprise.inject.Default;
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +18,8 @@ import com.battleboats.data.Player;
 import com.battleboats.data.PlayerJPADAO;
 
 
+@Default
+@Named("playerRESTService")
 // Full URL: http://localhost:8080/BattleBoats/rest/players
 @Path("/players")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
