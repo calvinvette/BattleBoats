@@ -2,6 +2,8 @@ package com.battleboats.data;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,6 +32,7 @@ public class TestJPADAO {
 	@After // Each test, set dao to null (pseudo-cleanup)
 	public void tearDown() throws Exception {
 		playerJPADAO = null;
+		//playerJPADAO.getEntityManager().createQuery("DELETE FROM Player where userName = 'ssnape'");
 	}
 
 	public Player makeSnape() {
@@ -90,8 +93,11 @@ public class TestJPADAO {
 
 	@Test
 	public void testFindByEmail() {
-		Player harry = playerJPADAO.findByEmail("harry.potter@hogwarts.ac.uk").get(0);
-		assertNotNull("Harry should have been found by email 'harry.potter@hogwarts.ac.uk'", harry);
+		playerJPADAO.insert(makeSnape());
+		List<Player> foundSnapes = playerJPADAO.findByEmail("severus.snape@hogwarts.ac.uk");
+		assertNotNull("Didn't find ANY snapes by email 'severus.snape@hogwarts.ac.uk'!", foundSnapes);
+		Player snape = foundSnapes.get(0);
+		assertNotNull("Severus should have been found by email 'severus.snape@hogwarts.ac.uk'", snape);
 	}
 
 	@Test

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -20,6 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  */
 @Entity
 @Table(name = "PLAYER", schema = "BATTLEBOATS" )
+@NamedQueries({
+	@NamedQuery(name=Player.FIND_BY_EMAIL, query="select p from Player p where p.email = :email"),
+	@NamedQuery(name=Player.FIND_BY_USERNAME, query="select p from Player p where p.username = :username")
+})
 @XmlType(propOrder={
 		"id",
 		"username",
@@ -35,6 +41,8 @@ import javax.xml.bind.annotation.XmlType;
 })
 @XmlRootElement
 public class Player implements java.io.Serializable {
+	public static final String FIND_BY_EMAIL = "Player.FIND_BY_EMAIL";
+	public static final String FIND_BY_USERNAME = "Player.FIND_BY_USERNAME";
 
 	private int id = -1;
 	private String username;

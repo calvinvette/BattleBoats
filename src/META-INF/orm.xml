@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	<named-query name="Player.FIND_BY_EMAIL">
+		<query>
+		<![CDATA[
+			select p from Player p where p.email = :email order by p.username
+		]]>
+		</query>
+	</named-query>
+	<named-query name="Player.FIND_BY_USERNAME">
+		<query>
+		<![CDATA[
+			select p from Player p where p.username = :username
+		]]>
+		</query>
+	</named-query>
+
+
+</entity-mappings>

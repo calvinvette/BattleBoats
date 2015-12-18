@@ -1,5 +1,6 @@
 package com.battleboats.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.TransactionAttribute;
@@ -112,11 +113,23 @@ public class PlayerJPADAO {
 	}
 
 	public Player findByUserName(String userName) {
-		return null;
+			return getEntityManager()
+				.createNamedQuery(Player.FIND_BY_USERNAME, Player.class)
+				.setParameter("username", userName)
+				.getSingleResult();
 	}
 
 	public List<Player> findByEmail(String email) {
-		return null;
+		
+		if (email.indexOf("@") > 1) { // replace with proper regex or call to email validator
+			return getEntityManager()
+				.createNamedQuery(Player.FIND_BY_EMAIL, Player.class)
+				.setParameter("email", email)
+				.getResultList();
+		}
+		else { 
+			return new ArrayList<Player>();
+		}
 	}
 
 	public List<Player> findAll() {
